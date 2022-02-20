@@ -31,13 +31,15 @@ function Form() {
                     'Content-Type': 'application/json'
                 }
             });
+            let data = await response.json();
+            await sleep(1500);
+            return data.name;
         } catch {
             setHasError(true);
             setErrorMessage(UNKOWN_ERROR_MESSAGE);
+            setIsLoading(false);
         }
-        let data = await response.json();
-        await sleep(1500);
-        return data.name;
+        return '';
     }
 
     function handleChange(event) {
