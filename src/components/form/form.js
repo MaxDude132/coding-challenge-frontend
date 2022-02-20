@@ -5,6 +5,7 @@ import { TextField, Button, CircularProgress } from '@mui/material';
 const NINJA_NAME_DEFAULT = '';
 
 const NO_WORDS_ERROR_MESSAGE = 'Please enter a word.';
+const UNKOWN_ERROR_MESSAGE = 'An unknown error occured.';
 
 
 function Form() {
@@ -21,13 +22,19 @@ function Form() {
     async function getNinjaName() {
         let formattedTechWords = techWordsValue.replace(/ +(?= )/g,'').split(' ').join(',');
         let url = `https://maxdude132-ninjify.herokuapp.com/ninjify?x=${formattedTechWords}`;
-        let response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
+        let response;
+        try {
+            response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+        } catch {
+            setHasError(true);
+            setErrorMessage(UNKOWN_ERROR_MESSAGE);
+        }
         let data = await response.json();
         await sleep(1500);
         return data.name;
