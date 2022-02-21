@@ -18,9 +18,8 @@ function Form() {
     async function getNinjaName() {
         let formattedTechWords = techWordsValue.replace(/ +(?= )/g,'').split(' ').join(',');
         let url = `https://maxdude132-ninjify.herokuapp.com/ninjify?x=${formattedTechWords}`;
-        let response;
         try {
-            response = await fetch(url, {
+            let response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -32,7 +31,6 @@ function Form() {
         } catch {
             setHasError(true);
             setErrorMessage(UNKOWN_ERROR_MESSAGE);
-            setIsLoading(false);
         }
         return '';
     }
