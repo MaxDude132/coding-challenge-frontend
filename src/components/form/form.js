@@ -15,10 +15,6 @@ function Form() {
     const [hasError, setHasError] = useState(false);
     const [errorMessage, setErrorMessage] = useState(false);
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     async function getNinjaName() {
         let formattedTechWords = techWordsValue.replace(/ +(?= )/g,'').split(' ').join(',');
         let url = `https://maxdude132-ninjify.herokuapp.com/ninjify?x=${formattedTechWords}`;
@@ -32,7 +28,6 @@ function Form() {
                 }
             });
             let data = await response.json();
-            await sleep(1500);
             return data.name;
         } catch {
             setHasError(true);
