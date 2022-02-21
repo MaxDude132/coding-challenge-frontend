@@ -78,7 +78,7 @@ function Form() {
     }
 
     return (
-        <div className="form"> 
+        <div className="form" onEnter={handleClick}> 
             {formDisplay()}
             {!isLoading && <Button id="submit-or-reset" variant='contained' onClick={handleClick}>{submitOrReset()}</Button>}
         </div>
