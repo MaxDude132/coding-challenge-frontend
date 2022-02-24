@@ -57,6 +57,12 @@ function Form() {
         }
     }
 
+    function handleEnter(event) {
+        if (event.key === 'Enter') {
+            handleClick();
+        }
+    }
+
     function submitOrReset() {
         if (ninjaName !== NINJA_NAME_DEFAULT || hasError) {
             return 'Reset';
@@ -78,7 +84,7 @@ function Form() {
     }
 
     return (
-        <div className="form" onEnter={handleClick}> 
+        <div className="form" onKeyPress={handleEnter}> 
             {formDisplay()}
             {!isLoading && <Button id="submit-or-reset" variant='contained' onClick={handleClick}>{submitOrReset()}</Button>}
         </div>
