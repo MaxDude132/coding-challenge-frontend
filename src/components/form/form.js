@@ -77,14 +77,14 @@ function Form() {
         } else if (isLoading) {
             return <CircularProgress className='pad' />;
         }  else if (ninjaName === NINJA_NAME_DEFAULT) {
-            return <TextField id="tech-words" label="Tech words" variant="filled" value={techWordsValue} onChange={handleChange} required className='pad'></TextField>;
+            return <TextField id="tech-words" label="Tech words" variant="filled" value={techWordsValue} onChange={handleChange} onKeyPress={handleEnter} required className='pad'></TextField>;
         } else {
             return <h4>Your ninja name is {ninjaName}</h4>;
         }
     }
 
     return (
-        <div className="form" onKeyPress={handleEnter}> 
+        <div className="form"> 
             {formDisplay()}
             {!isLoading && <Button id="submit-or-reset" variant='contained' onClick={handleClick}>{submitOrReset()}</Button>}
         </div>
